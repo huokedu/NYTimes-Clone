@@ -1,6 +1,6 @@
 /** 
 *  NewItem.js
-*  Description: container item for new feed
+*  Description: container item for new feed (ios version)
 *  Modules: React and React Native Modules
 *  Dependencies: styles.js Title
 *  Author: Tiffany Tse
