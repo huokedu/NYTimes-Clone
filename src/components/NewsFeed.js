@@ -21,8 +21,16 @@ export default class NewsFeed extends Component {
         });
         //call state, call data and store
         this.state = {
-            dataSource: this.dataSource.cloneWithRows(props.news)
+            dataSource: this.dataSource.cloneWithRows(props.news),
+            //modal is set to false
+            modalVisible: false
         };
+        //set this.onModalOpen to bind event handler (stupid shortcut I learned)
+        this.onModalOpen = this.onModalOpen.bind(this);
+        //set this.onModalClose to bind event handler
+        this.onModalClose = this.onModalClose.bind(this);
+        //set this.renderRow to bind NewsItem Data
+        this.renderRow = this.renderRow.bind(this)
     }
     //tell ListView how to render each row
     //use rest in a spread operation to set all of the entries of rowData
