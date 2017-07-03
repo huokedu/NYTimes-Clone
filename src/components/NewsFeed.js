@@ -7,7 +7,7 @@
 */
 //import modules
 import React, { PropTypes } from 'react';
-import { ListView, StyleSheet, View } from 'react-native';
+import { ListView, StyleSheet, View, Modal, WebView } from 'react-native';
 import Title from './Title.js';
 import * as globalStyles from '../styles/global.js';
 //export default NewsFeed React Component
@@ -32,17 +32,54 @@ export default class NewsFeed extends Component {
         //return NewsItem with data
         // pass data in ...rowData to  imageUrl, title, description, date, author, and location
         return (
-            <NewsItem style={styles.newsItem} index={index} {...rowData} />
+            <NewsItem style={styles.newsItem}
+                onPress={() => this.onModalOpen(rowData.url)}
+                index={index}
+                {...rowData}
+            />
         );
     }
-
+    //renderModal: show a Modal that shows the news article like a preview. It has the ability to toggle
+    //Webview: renders web content into native format
+    renderModal () {
+        return (
+            <Modal
+                animationType="slide"
+                visible={this.state.modalVisible}
+                onRequestClose={this.onModalClose}
+            >
+                    <View style={styles.modalContent}>
+                        <TouchableOpacity onPress={this.onModalClose} style={styles.closeButton}>
+                                <SmallText>Close</SmallText>
+                        </TouchableOpacity>
+                        <WebView source={{uri: this.state.modalUrl}}/>
+                    </View>
+            </Modal>
+        );
+    }
     render () {
         //note: enableEmptySection is a Boolean prop that determines if empty lsit sections should be rendered
         return (
             <View div={globalStyles.COMMON_STYLES.pageContainer> 
-                <ListView dataSource={this.state.dataSource} renderRow={this.renderRow} style={this.props.listStyles} />
+                <ListView dataSource={this.state.dataSource}
+                          renderRow={this.renderRow}
+                          style={this.props.listStyles}
+            />
+                {this.renderModal()}
             </View>
         );
+    }
+    //handler for modal popup
+    onModalOpen () {
+        this.setState({
+            modalVisble: true
+        });
+    }
+
+    onModalClose() {
+        this.setState({
+            modalVisible: false,
+        });
     }
 };
 //define default props
@@ -80,5 +117,17 @@ NewsFeed.propTypes = {
 const styles = StyleSheet.create({
     newsItem: {
         marginBottom: 20
+    },
+    //modal styling
+    modalContent: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingTop: 20,
+        backgroundColor: globalStyles.BG_COLOR
+    },
+    closeButton: {
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        flexDirection: 'row'
     }
 });
