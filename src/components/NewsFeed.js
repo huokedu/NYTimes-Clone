@@ -2,7 +2,7 @@
 *  NewsFeed.js
 *  Description: shows list view only works for ios
 *  Modules: React and React Native Modules
-*  Dependencies: styles.js Title
+*  Dependencies: styles.js, Title
 *  Author: Tiffany Tse
 */
 //import modules
