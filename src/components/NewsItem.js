@@ -33,6 +33,7 @@ export default class NewsItem extends Component {
   }
 
   render() {
+    //make variable constant, with these props
     const {
       style,
       imageUrl,
@@ -76,15 +77,24 @@ export default class NewsItem extends Component {
 }
 
 NewsItem.propTypes = {
-  imageUrl: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  date: PropTypes.instanceOf(Date).isRequired,
-  author: PropTypes.string.isRequired,
-  location: PropTypes.string,
-  index: PropTypes.number.isRequired,
-  onPress: PropTypes.func.isRequired,
-  style: View.propTypes.style
+    //whether or not to display imageUrl
+    imageUrl: PropTypes.string,
+    //whether or not to display imageUrl
+    title: PropTypes.string.isRequired,
+    //whether or not to display description
+    description: PropTypes.string,
+    //whether or not to display date
+    date: PropTypes.instanceOf(Date).isRequired,
+    //whether or not to display author
+    author: PropTypes.string.isRequired,
+    //whether or not to display location
+    location: PropTypes.string,
+    //whether or not to display index
+    index: PropTypes.number.isRequired,
+    //event handler for onPress
+    onPress: PropTypes.func.isRequired,
+    //style for NewsiTEM
+    style: View.propTypes.style
 };
 
 const styles = StyleSheet.create({
