@@ -11,11 +11,12 @@ import { bindActionCreators } from 'redux';
 //import modules
 import { loadNews } from '../actions/NewsActions';
 import NewsFeed from '../component/NewsFeed'
+import { reshapeNewsData } from '../util/dataTransformations';
 
 //create state for mapStateToProps which exposes  state tree's news property as a prop 
 //to NewsFeed called news
 const mapStateToProps = state ({
-   news: state.news 
+   news: reshapeNewsData(state.news);
 });
 
 //create the dispatcher for actions as a prop
