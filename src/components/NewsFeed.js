@@ -30,8 +30,27 @@ export default class NewsFeed extends Component {
         //set this.onModalClose to bind event handler
         this.onModalClose = this.onModalClose.bind(this);
         //set this.renderRow to bind NewsItem Data
-        this.renderRow = this.renderRow.bind(this)
+        this.renderRow = this.renderRow.bind(this);
+        //load news
+        this.refresh = this.refresh.bind(this);
     }
+
+    componentWillMount() {
+        this.refresh();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(nextProps.news)
+        });
+    }
+
+    refresh () {
+        if (this.props.loadNews) {
+            this.props.loadNews();
+        }
+    }
+
     //tell ListView how to render each row
     //use rest in a spread operation to set all of the entries of rowData
     renderRow (rowData, ...rest) {
@@ -119,7 +138,8 @@ NewsFeed.propTypes = {
     //pass newss
     news: PropTypes.arrayOf(PropTypes.object),
     //style prop
-    listStyles: View.propTypes.style
+    listStyles: View.propTypes.style,
+    loadNews: PropTypes.func
 };
 //custom styles
 const styles = StyleSheet.create({
