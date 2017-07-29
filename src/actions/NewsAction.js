@@ -1,6 +1,6 @@
-/* ActionTyps.js
+/* NewsActions.js
  * create actions
- * Dependencies: Redux, redux-logger, newsFeedReducer, searchTermReducer
+ * Dependencies: ActionTypes, TestData
  * Author: Tiffany Tse
- * Created: July 16, 2017
+ * Created: July 29, 2017
  */
