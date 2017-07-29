@@ -9,7 +9,8 @@ import React, { Component, PropTypes } from 'react';
 import {
     View,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    ActionSheetIOS
 } from 'react-native';
 import Byline from './Byline';
 import AppText from './AppText';
