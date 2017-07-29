@@ -1,0 +1,42 @@
+/* TestData.js
+ * dummy data for now, not using NYTIMES API key yet
+ * Dependencies: Redux, redux-logger, newsFeedReducer, searchTermReducer
+ * Author: Tiffany Tse
+ * Created: July 16, 2017
+ */
+{
+  "results": [
+    {
+      "title": "React Native",
+      "abstract": "Build Native Mobile Apps using JavaScript and React",
+      "url": "https://facebook.github.io/react-native",
+      "byline": "By Facebook",
+      "published_date": "2016-05-20T00:00:00-5:00",
+      "geo_facet": [
+        "Menlo Park, California"
+      ],
+      "multimedia": [
+        {
+          "url": "https://www.youtube.com/watch?v=AsP4yMY-a6U",
+          "format": "thumbLarge"
+        }
+      ]
+    },
+    {
+      "title": "CodeNunja",
+      "abstract": "Stay sane, Stay driven",
+      "url": "http://codenunja.wordpress.com",
+      "byline": "Tiffany Tse",
+      "published_date": "2014-05-20T00:00:00-5:00",
+      "geo_facet": [
+        "Alhambra, California, USA"
+      ],
+      "multimedia": [
+        {
+          "url": "https://codenunja.wordpress.com/2016/07/24/reddit-clone-ninjait-part1/",
+          "format": "thumbLarge"
+        }
+      ]
+    }
+  ]
+}
