@@ -26,6 +26,7 @@ export default class NewsItem extends Component {
   }
 
   onLongPress() {
+      //open Action sheet
     ActionSheetIOS.showActionSheetWithOptions({
       options: ['Bookmark', 'Cancel'],
       cancelButtonIndex: 1,
