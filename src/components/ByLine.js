@@ -15,7 +15,7 @@ const Byline ({date, author, location}) => (
     <View>
         <View style={style.row}>
             <SmallText>
-                {date.toLocaleDateString()}
+                {date}
             </SmallText>
             <SmallText>
                 {author}
@@ -34,7 +34,7 @@ const Byline ({date, author, location}) => (
 
 //define propTypes
 Byline.propTypes = {
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     location: PropTypes.string
 };
