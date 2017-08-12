@@ -1,9 +1,9 @@
 /* NewsSelector.js
  * Use reselect.js library for our seearch functionlity which has two types of selectors: input and memoized
- * Dependencies: ActionTypes
- * Modules: NewsActions, and NewsFeed
+ * Dependencies: reselect
+ * Modules: reshapeNewsData
  * Author: Tiffany Tse
- * Created: July 29, 2017
+ * Created: August 12, 2017
  */
 //import dependencies
 import {createSelector } from 'reselect';
