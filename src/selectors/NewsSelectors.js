@@ -8,7 +8,7 @@
 //import dependencies
 import {createSelector } from 'reselect';
 //import modules
-import { reshapeNewsData } from '../util/DataTransformations.js';
+import { reshapeNewsData, filterNewsBySearchTerm} from '../util/DataTransformations.js';
 
 
 //pass state  to newsSelector where wstate.news is passed to reshapeNewsData as input
