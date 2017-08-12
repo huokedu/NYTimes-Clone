@@ -9,9 +9,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //import modules
-import { loadNews } from '../actions/NewsActions';
-import NewsFeed from '../component/NewsFeed'
-import { reshapeNewsData } from '../util/dataTransformations';
+import { loadNews } from '../actions/NewsActions.js';
+import NewsFeed from '../component/NewsFeed.js';
+import { reshapeNewsData } from '../util/DataTransformations.js';
+import { allNewsSelector } from '../selectors/NewsSelectors.js';
 
 //create state for mapStateToProps which exposes  state tree's news property as a prop 
 //to NewsFeed called news
