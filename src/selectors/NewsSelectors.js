@@ -27,3 +27,19 @@ export const allNewsSelector = createSelector(
     [reshapeNewsSelector],
     newsItems => newsItems
 );
+
+//responsible for returning curent value of serachTerm from the Redux state tree
+const searchTermSelector = state => state.searchTerm;
+
+//takes care of case-insensitive searching
+const caseInsensitiveSearchTermSelector = createSelector(
+  searchTermSelector,
+  searchTerm => searchTerm.toLowerCase()
+);
+
+//takes, two inputs = reshapeNewsSelector and caseInsensitiveSearchTermSelector to pass to filterNewsBySearchTerm
+//return value of filterNewsBySearchTerm will be data exposed to the Search container
+export const searchNewsSelector = createSelector(
+  [reshapeNewsSelector, caseInsensitiveSearchTermSelector],
+  filterNewsBySearchTerm
+);

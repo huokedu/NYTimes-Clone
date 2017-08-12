@@ -38,5 +38,14 @@ export const reshapeNewsData = news => (
 
 export const filterNewsBySearchTerm = (newsItems, searchTerm) => {
   // returns an empty list if you haven't typed anything
+    if (serachTerm.length == 0) {
+        return [];
+    }
+    return newsItems.filter(
+        ({description, author, title}) => (
+        description.toLowerCase().indexOf(searchTerm) > -1 ||
+        author.toLowerCase().indexOf(searchTerm) > -1 ||
+        title.toLowerCase().indexOf(searchTerm) > -1
+    ));
 
 };
