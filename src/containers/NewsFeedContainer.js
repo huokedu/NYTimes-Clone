@@ -17,7 +17,7 @@ import { allNewsSelector } from '../selectors/NewsSelectors.js';
 //create state for mapStateToProps which exposes  state tree's news property as a prop 
 //to NewsFeed called news
 const mapStateToProps = state ({
-   news: reshapeNewsData(state.news);
+   news: allNewsSelector(state);
 });
 
 //create the dispatcher for actions as a prop
