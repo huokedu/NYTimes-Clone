@@ -7,7 +7,7 @@
 */
 //import modules
 import React, { PropTypes } from 'react';
-import { ListView, StyleSheet, View, Modal, WebView } from 'react-native';
+import { ListView, StyleSheet, View, Modal, WebView, RefreshControl, ActivityIndicator } from 'react-native';
 import Title from './Title.js';
 import * as globalStyles from '../styles/global.js';
 //export default NewsFeed React Component
@@ -23,7 +23,9 @@ export default class NewsFeed extends Component {
         this.state = {
             dataSource: this.dataSource.cloneWithRows(props.news),
             //modal is set to false
-            modalVisible: false
+            modalVisible: false,
+            initialLoading: false,
+            refershing: false
         };
         //set this.onModalOpen to bind event handler (stupid shortcut I learned)
         this.onModalOpen = this.onModalOpen.bind(this);
@@ -41,7 +43,8 @@ export default class NewsFeed extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(nextProps.news)
+            dataSource: this.state.dataSource.cloneWithRows(nextProps.news),
+            initialLoading: false
         });
     }
 
@@ -86,14 +89,50 @@ export default class NewsFeed extends Component {
     }
     render () {
         //note: enableEmptySection is a Boolean prop that determines if empty lsit sections should be rendered
-        return (
-            <View div={globalStyles.COMMON_STYLES.pageContainer> 
-                <ListView dataSource={this.state.dataSource}
-                          renderRow={this.renderRow}
-                          style={this.props.listStyles}
-            />
-                {this.renderModal()}
+        const {
+          listStyles = globalStyles.COMMON_STYLES.pageContainer,
+          showLoadingSpinner
+        } = this.props;
+        const { initialLoading, refreshing, dataSource } = this.state;
+
+        if (!this.state.connected) {
+          return (
+            <View style={[globalStyles.COMMON_STYLES.pageContainer, styles.loadingContainer]}>
+              <AppText>
+                No Connection
+              </AppText>
             </View>
+          );
+        }
+
+        return (
+          (initialLoading && showLoadingSpinner
+            ? (
+              <View style={[listStyles, styles.loadingContainer]}>
+                <ActivityIndicator
+                  animating
+                  size="small"
+                  {...this.props}
+                />
+              </View>
+            ) : (
+              <View style={styles.container}>
+                <ListView
+                  refreshControl={
+                    <RefreshControl
+                      refreshing={refreshing}
+                      onRefresh={this.refresh}
+                    />
+                  }
+                  enableEmptySections
+                  dataSource={dataSource}
+                  renderRow={this.renderRow}
+                  style={listStyles}
+                />
+                {this.renderModal()}
+              </View>
+            )
+          )
         );
     }
     //handler for modal popup
