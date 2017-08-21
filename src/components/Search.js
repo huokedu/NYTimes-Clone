@@ -5,8 +5,9 @@
 *  Dependencies: styles.js, Title
 *  Author: Tiffany Tse
 */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
+import NewsFeed from './NewsFeed';
 import * as globalStyles from '../styles/global';
 export default class Search extends Component {
     constructor (props) {
@@ -14,6 +15,13 @@ export default class Search extends Component {
         this.state = {
             searchText: ''
         }
+        //search change handler text change
+        this.searchNews = this.searchNews.bind(this);
+    }
+
+    searchNew(text) {
+        this.setState({searchText: text});
+        this.props.searchNew(text);
     }
     render() {
         return (
@@ -21,16 +29,22 @@ export default class Search extends Component {
                 <View style={styles.search}>
                     <TextInput
                         style={styles.input}
-                        onChangeText={text=> this.setState({searchText: text})}
+                        onChangeText={this.searchNews}
                         value={this.state.searchText}
                         placeholder={'Search'}
                         placeholderTextColor={globalStyles.MUTED_COLOR}
                     />
                 </View>
+                <NewsFeed news={this.props.filterNews} listStyles={{}}/>
             </View>
         );
     }
 }
+
+Serach.propTypes = {
+    filterdNews: PropTypes.arrayOf(PropTypes.object),
+    searchNews: PropTypes.func.isRequired
+};
 const styles = StyleSheet.create({
     input: {
         height: 35,
