@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import {TabBarIOS, Text, Alert, Vibration, StatusBar} from 'react-native';
 import NewsFeed from '../containers/NewsFeedContainer';
+import SearchContainer from '../containers/SearchContainer';
 import Search from './Search'
 import * as globalStyles from '../styles/global';
 export default class HomeScreen extends Component {
@@ -51,7 +52,7 @@ export default class HomeScreen extends Component {
                     selected={this.state.tab === 'search'}
                     onPress={ () => this.showBookmarkAlert()}
                     >
-                    <Search />
+                    <SearchContainer />
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
                     systemIcon={'bookmarks'}
