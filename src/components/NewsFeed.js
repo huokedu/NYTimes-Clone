@@ -172,18 +172,31 @@ NewsFeed.defaultProps = {
         }
     ]
 };
+//define default props
+NewsFeed.defaultProps = {
+    showLoadingSpinner = true
+};
+
 //define propTypes
 NewsFeed.propTypes = {
     //pass newss
     news: PropTypes.arrayOf(PropTypes.object),
     //style prop
     listStyles: View.propTypes.style,
-    loadNews: PropTypes.func
+    loadNews: PropTypes.func,
+    showLoadingSpinner:PropTypes.bool
 };
 //custom styles
 const styles = StyleSheet.create({
     newsItem: {
         marginBottom: 20
+    },
+    container: {
+        flex: 1
+    },
+    loadingContainer: {
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     //modal styling
     modalContent: {
